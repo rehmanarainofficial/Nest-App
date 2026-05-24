@@ -1,11 +1,17 @@
-import { IsNumber, IsOptional, IsString } from "class-validator";
+import { Transform } from 'class-transformer';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateStudentDto {
-  @IsOptional()
-  @IsString()
-  name!: string;
+    @IsOptional()
+    @IsString()
+    name!: string;
 
-  @IsOptional()
-  @IsNumber()
-  age!: number;
+    @Transform(({ value }) => value?.toLowerCase())
+    @IsOptional()
+    @IsString()
+    username!: string;
+
+    @IsOptional()
+    @IsNumber()
+    age!: number;
 }
