@@ -55,4 +55,9 @@ export class UserService {
     }
     return deletedUser;
   }
+
+  async deleteAllUsers() {
+    const result = await this.userModel.deleteMany({});
+    return result;
+  }
 }
