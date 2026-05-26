@@ -1,12 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { StudentService } from './student/student.service';
-import { StudentModule } from './student/student.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [StudentModule],
+  imports: [
+    AuthModule,
+    UserModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URI as string),
+  ],
   controllers: [AppController],
-  providers: [AppService, StudentService],
+  providers: [AppService],
 })
 export class AppModule {}
