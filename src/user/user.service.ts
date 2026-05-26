@@ -21,4 +21,38 @@ export class UserService {
       name: userDto.name,
     });
   }
+
+  async findUser() {
+    const users = await this.userModel.find();
+    if (!users) {
+      throw new ConflictException('No users found');
+    }
+    return users;
+  }
+
+  async findUserById(id: string) {
+    let findUser = await this.userModel.findById(id);
+    if (!findUser) {
+      throw new ConflictException('No user found with this id');
+    }
+    return findUser;
+  }
+
+  async updateUser(id: string, userDto: CreateUserDto) {
+    const updatedUser = await this.userModel.findByIdAndUpdate(id, userDto, {
+      new: true,
+    });
+    if (!updatedUser) {
+      throw new ConflictException('No user found with this id');
+    }
+    return updatedUser;
+  }
+
+  async deleteUser(id: string) {
+    const deletedUser = await this.userModel.findByIdAndDelete(id);
+    if (!deletedUser) {
+      throw new ConflictException('No user found with this id');
+    }
+    return deletedUser;
+  }
 }
