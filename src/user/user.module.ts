@@ -10,6 +10,6 @@ import { MongooseModule } from '@nestjs/mongoose';
   ],
   providers: [UserService],
   controllers: [UserController],
-  exports: [UserService, MongooseModule],
+  exports: [UserService],
 })
 export class UserModule {}
