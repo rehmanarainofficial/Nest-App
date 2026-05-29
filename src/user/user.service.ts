@@ -19,6 +19,7 @@ export class UserService {
       password: userDto.password,
       age: userDto.age,
       name: userDto.name,
+      role: userDto.role,
     });
   }
 

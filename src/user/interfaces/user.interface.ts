@@ -1,6 +1,4 @@
-export interface IUser {
-    name: string;
-    email: string;
-    password: string;
-    age: number;
+export enum Role {
+    ADMIN = "admin",
+    USER = "user"
 }
